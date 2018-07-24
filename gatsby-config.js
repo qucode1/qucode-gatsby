@@ -12,5 +12,9 @@ module.exports = {
         accessToken,
       },
     },
+    {
+      resolve: 'gatsby-plugin-styled-components',
+      options: {},
+    },
   ],
 }
