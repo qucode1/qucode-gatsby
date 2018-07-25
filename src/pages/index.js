@@ -1,24 +1,24 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 
 const IndexPage = ({ data, className }) => {
+  const profile = data.allContentfulPerson.edges[0].node
   return (
     <Layout landing>
       <div className={className}>
         <div className="greeting">
           <h1>Hi people</h1>
-          <p>My name is {data.allContentfulPerson.edges[0].node.name}</p>
+          <p>My name is {profile.name}</p>
         </div>
         <div className="imgContainer">
-          <img
-            srcSet={
-              data.allContentfulPerson.edges[0].node.image.resolutions
-                .srcSetWebp
-            }
-            alt="John Doe"
+          <Img
+            fluid
+            sizes={profile.image.sizes}
+            alt={profile.image.title}
             width="100%"
           />
         </div>
@@ -63,8 +63,9 @@ export default props => (
               email
               image {
                 id
-                resolutions(resizingBehavior: SCALE) {
-                  srcSetWebp
+                title
+                sizes(quality: 100) {
+                  ...GatsbyContentfulSizes_withWebp
                 }
               }
             }
