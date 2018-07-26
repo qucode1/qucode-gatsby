@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import styled from 'styled-components'
+import styled, { injectGlobal } from 'styled-components'
+import 'normalize.css'
 // import { StaticQuery, graphql } from 'gatsby'
 
 import Header from './header'
@@ -16,7 +17,7 @@ const Layout = ({ children, data, landing, className }) => {
           { name: 'keywords', content: 'sample, something' },
         ]}
       />
-      <Header siteTitle="Gatsby Qucode" />
+      {!landing && <Header siteTitle="Gatsby Qucode" />}
       <main>{children}</main>
     </div>
   )
@@ -26,10 +27,21 @@ const StyledLayout = styled(Layout)`
   height: 100vh;
   & main {
     background-color: ${({ landing }) =>
-      landing ? 'cornflowerblue' : 'whitesmoke'};
-    margin: ${({ landing }) => (landing ? '0' : '10px')};
+      landing ? 'transparent' : 'whitesmoke'};
+    background-image: ${({ landing }) =>
+      landing
+        ? 'linear-gradient(to bottom right, rgba(31, 164, 237, 0.78), rgba(7, 27, 37, 0.84));'
+        : 'none'}
+    margin: 0;
     padding: ${({ landing }) => (landing ? '0' : '5px')};
     font-family: sans-serif;
+    height: 100%;
+  }
+`
+
+injectGlobal`
+  * {
+    box-sizing: border-box
   }
 `
 
