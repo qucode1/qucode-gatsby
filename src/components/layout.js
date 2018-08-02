@@ -28,10 +28,6 @@ const StyledLayout = styled(Layout)`
   & main {
     background-color: ${({ landing }) =>
       landing ? 'transparent' : 'whitesmoke'};
-    background-image: ${({ landing }) =>
-      landing
-        ? 'linear-gradient(to bottom right, rgba(31, 164, 237, 0.78), rgba(7, 27, 37, 0.84));'
-        : 'none'}
     margin: 0;
     padding: ${({ landing }) => (landing ? '0' : '5px')};
     font-family: sans-serif;
@@ -41,8 +37,13 @@ const StyledLayout = styled(Layout)`
 
 injectGlobal`
   * {
-    box-sizing: border-box
+    box-sizing: border-box;
   }
+  html, body {
+    width: 100vW;
+    height: 100vH
+  }
+  
 `
 
 Layout.propTypes = {
