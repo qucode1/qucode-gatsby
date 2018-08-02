@@ -23,34 +23,36 @@ const IndexPage = ({ data, className }) => {
           <p>My name is {profile.name}</p>
         </div>
         <div className="content">
-          <div className="profileImgContainer">
-            <div className="topLeftIcons">
-              <FiTwitter />
-              <FiGithub />
-            </div>
-            <div className="centerIconsRow">
-              <div className="bottomLeftIcons">
+          <div className="squareContainer">
+            <div className="inSquare">
+              <div className="topLeftIcons">
                 <FiTwitter />
                 <FiGithub />
               </div>
-              <Img
-                fluid
-                sizes={profileImage.sizes}
-                alt={profileImage.title}
-                className="profileImageWrapper"
-                outerWrapperClassName="profileImageOuterWrapper"
-                imgStyle={{
-                  left: '-2px',
-                }}
-              />
-              <div className="topRightIcons">
+              <div className="centerIconsRow">
+                <div className="bottomLeftIcons">
+                  <FiTwitter />
+                  <FiGithub />
+                </div>
+                <Img
+                  fluid
+                  sizes={profileImage.sizes}
+                  alt={profileImage.title}
+                  className="profileImageWrapper"
+                  outerWrapperClassName="profileImageOuterWrapper"
+                  imgStyle={{
+                    left: '-2px',
+                  }}
+                />
+                <div className="topRightIcons">
+                  <FiGithub />
+                  <FiTwitter />
+                </div>
+              </div>
+              <div className="bottomRightIcons">
                 <FiGithub />
                 <FiTwitter />
               </div>
-            </div>
-            <div className="bottomRightIcons">
-              <FiGithub />
-              <FiTwitter />
             </div>
           </div>
         </div>
@@ -99,17 +101,33 @@ const StyledIndexPage = styled(IndexPage)`
   & .content {
     grid-column: 2 / 4;
     grid-row: 2 / 4;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "image";
+    display: flex;
+    justify-content: center;
+    align-items: center
   }
-  & .profileImgContainer {
-    grid-area: image;
+  & .squareContainer {
+    height: 0;
+    width: 100%;
+	  padding-bottom: 100%;
+	  position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     transform: rotate(45deg);
+  }
+  & .inSquare {
+    position: absolute;
+	  top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    max-width: 400px;
+    min-height: 200px;
+    min-width: 200px;
+    width: 100%;
+    user-select: none
   }
   & .nextPageLink {
     grid-column: 3 / 4;
@@ -121,8 +139,6 @@ const StyledIndexPage = styled(IndexPage)`
     border-radius: 50%;
   }
   & .profileImageOuterWrapper {
-    max-height: 100%;
-    max-width: 400px;
     width: 100%;
     transform: rotate(-45deg);
   }
@@ -158,6 +174,7 @@ const StyledIndexPage = styled(IndexPage)`
   & .centerIconsRow {
     display: flex;
     align-items: center;
+    width: 100%;
   }
 `
 
