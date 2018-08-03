@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Img from 'gatsby-image'
 import { FiGithub, FiTwitter } from 'react-icons/fi'
 
 import LandingProfileImage from './LandingProfileImage'
