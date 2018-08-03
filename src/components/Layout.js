@@ -5,7 +5,7 @@ import styled, { injectGlobal } from 'styled-components'
 import 'normalize.css'
 // import { StaticQuery, graphql } from 'gatsby'
 
-import Header from './header'
+import Header from './Header'
 
 const Layout = ({ children, data, landing, className }) => {
   return (
