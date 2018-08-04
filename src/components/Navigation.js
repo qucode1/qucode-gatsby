@@ -6,7 +6,7 @@ const Navigation = ({ className }) => {
   return (
     <nav className={className}>
       <ul>
-        <Link className="link" activeClassName="activeLink" to="/">
+        <Link className="link" exact activeClassName="activeLink" to="/">
           Home
         </Link>
         <Link className="link" activeClassName="activeLink" to="/about">
@@ -47,7 +47,7 @@ export default styled(Navigation)`
     text-decoration: none;
     padding: 0 5px 0 5px;
     font-size: 20px;
-    transition: 0.33s ease-in-out
+    transition: 0.33s ease-out
     &:hover:not(.activeLink) {
       color: white;
     }

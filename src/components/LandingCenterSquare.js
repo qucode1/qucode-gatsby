@@ -100,7 +100,7 @@ export default styled(LandingCenterSquare)`
   .bottomLeftIcons svg,
   .bottomRightIcons svg {
     transform: rotate(-45deg);
-    color: white;
+    color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     padding: 5px;
     min-width: 30px;
@@ -109,7 +109,7 @@ export default styled(LandingCenterSquare)`
     height: 5vh;
     max-width: 50px;
     max-height: 50px;
-    transition: 0.33s ease-in-out;
+    transition: 0.33s ease-out;
   }
   & .topLeftIcons svg:hover,
   .topRightIcons svg:hover,

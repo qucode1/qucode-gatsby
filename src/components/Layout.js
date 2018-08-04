@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled, { injectGlobal } from 'styled-components'
 import 'normalize.css'
-// import { StaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
 
 import Header from './Header'
+import LandingBackground from './LandingBackground'
 
 const Layout = ({ children, data, landing, className }) => {
+  const bg = data.background.edges[0].node
   return (
     <div className={className}>
       <Helmet
@@ -17,6 +19,7 @@ const Layout = ({ children, data, landing, className }) => {
           { name: 'keywords', content: 'sample, something' },
         ]}
       />
+      {landing && <LandingBackground bg={bg} />}
       <Header siteTitle="QuCode" />
       <main>{children}</main>
     </div>
@@ -32,6 +35,10 @@ const StyledLayout = styled(Layout)`
     padding: ${({ landing }) => (landing ? '0' : '5px')};
     font-family: sans-serif;
     height: 100%;
+    padding-top: 55px;
+    @media screen and (max-width: 768px) {
+      padding-bottom: 55px;
+    }
   }
 `
 
@@ -52,4 +59,23 @@ Layout.propTypes = {
   landing: PropTypes.bool,
 }
 
-export default StyledLayout
+export default props => (
+  <StaticQuery
+    query={graphql`
+      query {
+        background: allContentfulAsset(filter: { title: { eq: "bg" } }) {
+          edges {
+            node {
+              id
+              title
+              sizes(quality: 100) {
+                ...GatsbyContentfulSizes_withWebp
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={data => <StyledLayout data={data} {...props} />}
+  />
+)

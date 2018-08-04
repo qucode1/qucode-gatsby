@@ -3,7 +3,6 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import Layout from '../components/Layout'
-import LandingBackground from '../components/LandingBackground'
 import LandingCenterSquare from '../components/LandingCenterSquare'
 
 class IndexPage extends Component {
@@ -19,12 +18,10 @@ class IndexPage extends Component {
   render() {
     const { data, className } = this.props
     // const profile = data.allContentfulPerson.edges[0].node
-    const bg = data.background.edges[0].node
     const profileImage = data.profile.edges[0].node
     return (
       <Layout landing>
         <div className={className}>
-          <LandingBackground bg={bg} />
           <div className="content">
             <LandingCenterSquare
               profileImage={profileImage}
@@ -76,17 +73,6 @@ export default props => (
                 sizes(quality: 100) {
                   ...GatsbyContentfulSizes_withWebp
                 }
-              }
-            }
-          }
-        }
-        background: allContentfulAsset(filter: { title: { eq: "bg" } }) {
-          edges {
-            node {
-              id
-              title
-              sizes(quality: 100) {
-                ...GatsbyContentfulSizes_withWebp
               }
             }
           }
