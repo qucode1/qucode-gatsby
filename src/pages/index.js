@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, StaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import Layout from '../components/Layout'
@@ -18,26 +18,19 @@ class IndexPage extends Component {
   }
   render() {
     const { data, className } = this.props
-    const profile = data.allContentfulPerson.edges[0].node
+    // const profile = data.allContentfulPerson.edges[0].node
     const bg = data.background.edges[0].node
     const profileImage = data.profile.edges[0].node
     return (
       <Layout landing>
         <div className={className}>
           <LandingBackground bg={bg} />
-          <div className="greeting">
-            <h1>Hi people</h1>
-            <p>My name is {profile.name}</p>
-          </div>
           <div className="content">
             <LandingCenterSquare
               profileImage={profileImage}
               didMount={this.state.didMount}
             />
           </div>
-          <Link className="nextPageLink" to="/page-2/">
-            Go to page 2
-          </Link>
         </div>
       </Layout>
     )
@@ -55,10 +48,7 @@ const StyledIndexPage = styled(IndexPage)`
     'footer footer footer footer';
   grid-gap: 5px;
   height: 100%;
-
-  & .greeting {
-    grid-area: header;
-  }
+  padding: 5px;
   & .content {
     grid-column: 2 / 4;
     grid-row: 2 / 4;
@@ -66,11 +56,6 @@ const StyledIndexPage = styled(IndexPage)`
     justify-content: center;
     align-items: center;
     overflow: hidden;
-  }
-  & .nextPageLink {
-    grid-column: 3 / 4;
-    grid-row: 4 / 5;
-    text-align: right;
   }
 `
 

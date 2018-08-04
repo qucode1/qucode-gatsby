@@ -33,6 +33,7 @@ const LandingCenterSquare = ({ className, didMount, profileImage }) => (
 export default styled(LandingCenterSquare)`
   height: 0;
   width: 100%;
+  max-width: 50vh;
   padding-bottom: 100%;
   position: relative;
   display: flex;
@@ -108,6 +109,7 @@ export default styled(LandingCenterSquare)`
     height: 5vh;
     max-width: 50px;
     max-height: 50px;
+    transition: 0.33s ease-in-out;
   }
   & .topLeftIcons svg:hover,
   .topRightIcons svg:hover,

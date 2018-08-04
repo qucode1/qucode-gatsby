@@ -17,7 +17,7 @@ const Layout = ({ children, data, landing, className }) => {
           { name: 'keywords', content: 'sample, something' },
         ]}
       />
-      {!landing && <Header siteTitle="Gatsby Qucode" />}
+      <Header siteTitle="QuCode" />
       <main>{children}</main>
     </div>
   )
@@ -38,6 +38,7 @@ const StyledLayout = styled(Layout)`
 injectGlobal`
   * {
     box-sizing: border-box;
+    font-family: sans-serif
   }
   html, body {
     width: 100vW;

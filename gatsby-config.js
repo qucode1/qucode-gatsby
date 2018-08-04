@@ -1,7 +1,7 @@
 const { spaceId, accessToken } = require('./secrets.json')
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Qucode - React Development',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
