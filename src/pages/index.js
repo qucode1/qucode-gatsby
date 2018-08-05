@@ -17,14 +17,13 @@ class IndexPage extends Component {
   }
   render() {
     const { data, className } = this.props
-    // const profile = data.allContentfulPerson.edges[0].node
-    const profileImage = data.profile.edges[0].node
+    const profile = data.allContentfulPerson.edges[0].node
     return (
       <Layout landing>
         <div className={className}>
           <div className="content">
             <LandingCenterSquare
-              profileImage={profileImage}
+              profileImage={profile.image}
               didMount={this.state.didMount}
             />
           </div>
@@ -59,7 +58,7 @@ const StyledIndexPage = styled(IndexPage)`
 export default props => (
   <StaticQuery
     query={graphql`
-      query allContentfulPerson {
+      query indexQuery {
         allContentfulPerson {
           edges {
             node {
@@ -73,17 +72,6 @@ export default props => (
                 sizes(quality: 100) {
                   ...GatsbyContentfulSizes_withWebp
                 }
-              }
-            }
-          }
-        }
-        profile: allContentfulAsset(filter: { title: { eq: "profile" } }) {
-          edges {
-            node {
-              id
-              title
-              sizes(quality: 100) {
-                ...GatsbyContentfulSizes_withWebp
               }
             }
           }

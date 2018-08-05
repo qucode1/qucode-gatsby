@@ -40,12 +40,17 @@ const StyledLayout = styled(Layout)`
       padding-bottom: 55px;
     }
   }
+  & a {
+    text-decoration: none;
+  }
 `
 
 injectGlobal`
   * {
     box-sizing: border-box;
-    font-family: sans-serif
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
   }
   html, body {
     width: 100vW;

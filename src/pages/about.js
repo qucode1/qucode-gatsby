@@ -1,15 +1,51 @@
 import React, { Component } from 'react'
+import { StaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
 
 import Layout from '../components/Layout'
 
 class About extends Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
+    const profile = this.props.data.allContentfulPerson.edges[0].node
     return (
       <Layout landing>
-        <h2>About Me</h2>
+        <div className={this.props.className}>
+          <h2>About Me</h2>
+          <p>{profile.shortBio.shortBio}</p>
+        </div>
       </Layout>
     )
   }
 }
 
-export default About
+const StyledAbout = styled(About)`
+  padding: 5px;
+  h2 {
+    color: white;
+  }
+`
+
+export default props => (
+  <StaticQuery
+    query={graphql`
+      query aboutQuery {
+        allContentfulPerson {
+          edges {
+            node {
+              id
+              title
+              name
+              shortBio {
+                shortBio
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={data => <StyledAbout data={data} {...props} />}
+  />
+)
