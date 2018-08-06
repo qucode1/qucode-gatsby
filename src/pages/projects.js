@@ -65,16 +65,29 @@ const StyledProjects = styled(Projects)`
   max-width: 100%;
   color: rgba(255, 255, 255, 0.9);
   display: grid;
-  grid-template-columns: repeat(3, minmax(calc(100% / 3 - 30px), 400px));
   grid-template-rows: 64px 3fr 3fr 3fr;
   grid-gap: 10px;
   min-height: 100%;
+
+  grid-template-columns: minmax(calc(100% - 10px), 400px);
   grid-template-areas:
-    'title title title'
-    'project project project'
-    'project project project'
-    'project project project';
+    'title'
+    'project';
   justify-content: center;
+  @media screen and (min-width: 650px) {
+    grid-template-columns: repeat(2, minmax(calc(100% / 2 - 20px), 400px));
+    grid-template-areas:
+      'title title'
+      'project project';
+  }
+  @media screen and (min-width: 850px) {
+    grid-template-areas:
+      'title title title'
+      'project project project'
+      'project project project'
+      'project project project';
+    grid-template-columns: repeat(3, minmax(calc(100% / 3 - 30px), 400px));
+  }
   h2 {
     margin: 15px 0;
     grid-area: title;

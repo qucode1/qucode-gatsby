@@ -40,6 +40,7 @@ const StyledLayout = styled(Layout)`
     margin: 0;
     padding: ${({ landing }) => (landing ? '0' : '5px')};
     font-family: sans-serif;
+    height: 100%;
     min-height: 100%;
     padding-top: 55px;
     @media screen and (max-width: 768px) {

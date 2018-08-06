@@ -22,9 +22,16 @@ class About extends Component {
 }
 
 const StyledAbout = styled(About)`
-  padding: 5px;
+  padding: 10px;
+  margin: 15px auto;
+  border-radius: 5px;
+  background-color: rgba(7, 27, 37, 0.45);
+  width: 95%;
+  max-width: 1000px;
+  color: rgba(255, 255, 255, 0.9);
   h2 {
     color: white;
+    margin: 15px 0;
   }
 `
 

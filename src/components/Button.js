@@ -8,16 +8,14 @@ const Button = props => {
   const button = props.icon ? (
     <div className="iconButton">
       <Icon />
-      <p>{props.text}</p>
+      {props.text && <p>{props.text}</p>}
     </div>
   ) : (
-    <div className="button">
-      <p>{props.text}</p>
-    </div>
+    <div className="button">{props.text && <p>{props.text}</p>}</div>
   )
 
   return (
-    <div className={props.className}>
+    <div className={props.className} style={props.style ? props.style : null}>
       {props.link ? (
         <a href={props.link} target="_blank">
           {button}
@@ -39,18 +37,22 @@ export default styled(Button)`
   & a {
     color: rgba(0, 0, 0, 0.78);
     display: block;
+    width: 100%;
+    height: 100%;
   }
   & .iconButton,
   .button {
     display: inline-flex;
+    align-items: center;
     padding: 5px 8px;
     & svg {
       align-self: center;
-      min-width: 14px;
+      min-width: ${props => (props.size ? props.size : 14)}px;
+      min-height: ${props => (props.size ? props.size : 14)}px;
     }
     & p {
       margin: 0;
-      padding: 4px 0 0 5px;
+      padding: 3px 0 0 5px;
       text-decoration: none;
     }
   }

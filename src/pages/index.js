@@ -66,6 +66,8 @@ export default props => (
               title
               name
               email
+              github
+              twitter
               image {
                 id
                 title

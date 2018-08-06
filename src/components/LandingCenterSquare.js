@@ -70,27 +70,28 @@ export default styled(LandingCenterSquare)`
   }
   & .bottomLeftIcons {
     transform: translateY(-100%);
-    transition-delay: 0.3s;
+    transition-delay: 0.15s;
     &.isVisible {
       transform: translateY(0);
     }
   }
   & .bottomRightIcons {
     transform: translateX(-100%);
-    transition-delay: 0.15s;
+    transition-delay: 0s;
     &.isVisible {
       transform: translateX(0);
     }
   }
   & .topLeftIcons {
     transform: translateX(100%);
-    transition-delay: 0.45s;
+    transition-delay: 0.3s;
     &.isVisible {
       transform: translateX(0);
     }
   }
   & .topRightIcons {
     transform: translateY(100%);
+    transition-delay: 0.45s;
     &.isVisible {
       transform: translateY(0);
     }
