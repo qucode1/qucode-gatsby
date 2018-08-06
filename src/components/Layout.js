@@ -9,6 +9,12 @@ import Header from './Header'
 import LandingBackground from './LandingBackground'
 
 const Layout = ({ children, data, landing, className }) => {
+  window.addEventListener('scroll', () => {
+    window.document.body.scrollTop > 20 ||
+    window.document.documentElement.scrollTop > 20
+      ? window.document.querySelector('header').classList.add('darkBg')
+      : window.document.querySelector('header').classList.remove('darkBg')
+  })
   const bg = data.background.edges[0].node
   return (
     <div className={className}>
@@ -34,7 +40,7 @@ const StyledLayout = styled(Layout)`
     margin: 0;
     padding: ${({ landing }) => (landing ? '0' : '5px')};
     font-family: sans-serif;
-    height: 100%;
+    min-height: 100%;
     padding-top: 55px;
     @media screen and (max-width: 768px) {
       padding-bottom: 55px;
@@ -53,8 +59,8 @@ injectGlobal`
     padding: 0;
   }
   html, body {
-    width: 100vW;
-    height: 100vH
+    width: 100%;
+    height: 100%
   }
   
 `

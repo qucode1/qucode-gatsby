@@ -34,6 +34,8 @@ export default styled(Button)`
   border-radius: 4px;
   cursor: pointer;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
   & a {
     color: rgba(0, 0, 0, 0.78);
     display: block;
@@ -44,6 +46,7 @@ export default styled(Button)`
     padding: 5px 8px;
     & svg {
       align-self: center;
+      min-width: 14px;
     }
     & p {
       margin: 0;

@@ -31,6 +31,7 @@ export default styled(Navigation)`
   @media screen and (max-width: 768px) {
     position: fixed;
     bottom: 0;
+    background-color: rgba(7, 27, 37, 0.84);
   }
   ul {
     width: 100%;

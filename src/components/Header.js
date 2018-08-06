@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Navigation from './Navigation'
 
 const Header = ({ siteTitle, className }) => (
-  <div className={className}>
+  <header className={className}>
     <h1 className="title">
       <Link
         to="/"
@@ -20,7 +20,7 @@ const Header = ({ siteTitle, className }) => (
     </h1>
     <Navigation />
     <div className="placeholder" />
-  </div>
+  </header>
 )
 
 const StyledHeader = styled(Header)`
@@ -34,6 +34,9 @@ const StyledHeader = styled(Header)`
   flex-wrap: wrap;
   justify-content: center;
   box-shadow: 0 0 1px rgba(7, 27, 37, 0.84);
+  &.darkBg {
+    background-color: rgba(7, 27, 37, 0.84);
+  }
   & .title {
     margin: auto;
     flex: 1;
