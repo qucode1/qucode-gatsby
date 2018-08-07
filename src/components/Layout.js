@@ -43,6 +43,7 @@ const StyledLayout = styled(Layout)`
     height: 100%;
     min-height: 100%;
     padding-top: 55px;
+    overflow: ${({ modal }) => (modal ? 'hidden' : 'initial')};
     @media screen and (max-width: 768px) {
       padding-bottom: 55px;
     }

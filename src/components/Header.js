@@ -35,6 +35,7 @@ const StyledHeader = styled(Header)`
   justify-content: center;
   z-index: 1;
   box-shadow: 0 0 1px rgba(7, 27, 37, 0.84);
+  transition: 0.25s ease-in;
   &.darkBg {
     background-color: rgba(7, 27, 37, 0.84);
   }

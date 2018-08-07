@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
-const modalRoot = document.getElementById('modalRoot')
+import Button from '../components/Button'
+
+const modalRoot = window.document.getElementById('modalRoot')
 
 class Modal extends React.Component {
   constructor(props) {
@@ -28,11 +30,12 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { image, className } = this.props
+    const { image, className, closeModal } = this.props
     return ReactDOM.createPortal(
       <div className={className}>
+        <Button icon="FiX" className="closeBtn" onClick={closeModal} />
         <Img
-          fluid
+          fixed
           sizes={image.sizes}
           alt={image.title}
           className="projectImageInnerWrapper"
@@ -47,9 +50,32 @@ class Modal extends React.Component {
 const StyledModal = styled(Modal)`
   position: fixed;
   color: white;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & .closeBtn {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+  }
+  & .projectImageOuterWrapper {
+    width: 70vmin;
+    padding-bottom: 70vmin;
+    @media screen and (max-width: 768px) {
+      width: 90vmin;
+      padding-bottom: 90vmin;
+    }
+  }
+  & .projectImageInnerWrapper {
+    position: absolute !important;
+    width: 100%;
+    height: 100%;
+  }
 `
 
 export default StyledModal

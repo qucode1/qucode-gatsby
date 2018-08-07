@@ -19,10 +19,14 @@ class Projects extends Component {
     console.log('image', image)
     this.setState({ galleryOpen: true, galleryImage: image })
   }
+  closeImageGallery = () => {
+    console.log('close Modal')
+    this.setState({ galleryOpen: false, galleryImage: null })
+  }
   render() {
     const projects = this.props.data.allContentfulProject.edges
     return (
-      <Layout landing>
+      <Layout landing modal={this.state.galleryOpen}>
         <div className={this.props.className}>
           <h2>Projects</h2>
           {projects.map(
@@ -89,13 +93,16 @@ class Projects extends Component {
                     </div>
                   ))}
                 </div>
-                {this.state.galleryOpen &&
-                  this.state.galleryImage && (
-                    <Modal image={this.state.galleryImage} />
-                  )}
               </div>
             )
           )}
+          {this.state.galleryOpen &&
+            this.state.galleryImage && (
+              <Modal
+                image={this.state.galleryImage}
+                closeModal={this.closeImageGallery}
+              />
+            )}
         </div>
       </Layout>
     )
@@ -151,10 +158,14 @@ const StyledProjects = styled(Projects)`
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
+    & .thumbnail {
+      cursor: pointer;
+    }
+    & .projectImageOuterWrapper {
+      width: 70px;
+    }
   }
-  & .projectImageOuterWrapper {
-    width: 70px;
-  }
+
   & .tags {
     display: flex;
     flex-wrap: wrap;
@@ -198,7 +209,12 @@ export default props => (
               images {
                 id
                 title
-                sizes(resizingBehavior: PAD, quality: 100) {
+                sizes(
+                  maxWidth: 800
+                  maxHeight: 800
+                  resizingBehavior: PAD
+                  quality: 100
+                ) {
                   ...GatsbyContentfulSizes_withWebp
                 }
               }

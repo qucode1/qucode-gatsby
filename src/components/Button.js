@@ -15,7 +15,7 @@ const Button = props => {
   )
 
   return (
-    <div className={props.className} style={props.style ? props.style : null}>
+    <div {...props}>
       {props.link ? (
         <a href={props.link} target="_blank" rel="noopener noreferrer">
           {button}
@@ -34,6 +34,10 @@ export default styled(Button)`
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background-color: #ffba3d;
+  }
   & a {
     color: rgba(0, 0, 0, 0.78);
     display: block;
