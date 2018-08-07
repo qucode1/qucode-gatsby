@@ -17,7 +17,7 @@ const Button = props => {
   return (
     <div className={props.className} style={props.style ? props.style : null}>
       {props.link ? (
-        <a href={props.link} target="_blank">
+        <a href={props.link} target="_blank" rel="noopener noreferrer">
           {button}
         </a>
       ) : (

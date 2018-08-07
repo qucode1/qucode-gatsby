@@ -1,14 +1,23 @@
 import React, { Component } from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
-import { FiLink } from 'react-icons/fi'
+import Img from 'gatsby-image'
 
 import Layout from '../components/Layout'
 import Button from '../components/Button'
+import Modal from '../components/ProjectsImageModal'
 
 class Projects extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      galleryOpen: false,
+      galleryImage: null,
+    }
+  }
+  openImageGallery = image => {
+    console.log('image', image)
+    this.setState({ galleryOpen: true, galleryImage: image })
   }
   render() {
     const projects = this.props.data.allContentfulProject.edges
@@ -18,11 +27,40 @@ class Projects extends Component {
           <h2>Projects</h2>
           {projects.map(
             ({
-              node: { id, title, description, tags, demo, code, serverCode },
+              node: {
+                id,
+                title,
+                description,
+                tags,
+                demo,
+                code,
+                serverCode,
+                images,
+              },
             }) => (
               <div className="project" key={id}>
                 <h4>{title}</h4>
                 <p>{description.description}</p>
+                {images &&
+                  images.length && (
+                    <div className="images">
+                      {images.map(image => (
+                        <div
+                          key={image.id}
+                          className="thumbnail"
+                          onClick={() => this.openImageGallery(image)}
+                        >
+                          <Img
+                            fluid
+                            sizes={image.sizes}
+                            alt={image.title}
+                            className="projectImageInnerWrapper"
+                            outerWrapperClassName="projectImageOuterWrapper"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 <div className="links">
                   <Button
                     className="link"
@@ -51,6 +89,10 @@ class Projects extends Component {
                     </div>
                   ))}
                 </div>
+                {this.state.galleryOpen &&
+                  this.state.galleryImage && (
+                    <Modal image={this.state.galleryImage} />
+                  )}
               </div>
             )
           )}
@@ -68,7 +110,7 @@ const StyledProjects = styled(Projects)`
   grid-template-rows: 64px 3fr 3fr 3fr;
   grid-gap: 10px;
   min-height: 100%;
-
+  padding-bottom: 60px;
   grid-template-columns: minmax(calc(100% - 10px), 400px);
   grid-template-areas:
     'title'
@@ -102,6 +144,16 @@ const StyledProjects = styled(Projects)`
     & > p {
       margin: 5px 0;
     }
+  }
+  & .images {
+    display: flex;
+    margin: 10px 0;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+  & .projectImageOuterWrapper {
+    width: 70px;
   }
   & .tags {
     display: flex;
@@ -143,6 +195,13 @@ export default props => (
               demo
               code
               serverCode
+              images {
+                id
+                title
+                sizes(resizingBehavior: PAD, quality: 100) {
+                  ...GatsbyContentfulSizes_withWebp
+                }
+              }
             }
           }
         }

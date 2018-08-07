@@ -5,9 +5,6 @@ import styled from 'styled-components'
 import Layout from '../components/Layout'
 
 class About extends Component {
-  constructor(props) {
-    super(props)
-  }
   render() {
     const profile = this.props.data.allContentfulPerson.edges[0].node
     return (
