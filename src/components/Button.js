@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import Fi from 'react-icons/fi'
 
@@ -15,40 +15,48 @@ const Button = props => {
   )
 
   return (
-    <div {...props}>
+    <button {...props}>
       {props.link ? (
         <a href={props.link} target="_blank" rel="noopener noreferrer">
           {button}
         </a>
       ) : (
-        <div className="button">{button}</div>
+        <Fragment>{button}</Fragment>
       )}
-    </div>
+    </button>
   )
 }
 
 export default styled(Button)`
   background-color: orange;
+  border: none;
   border-radius: 4px;
   cursor: pointer;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
-  transition: 0.3s ease-in-out;
-  &:hover {
+  transition: 0.25s ease-in-out;
+  &:hover:not(:disabled) {
     background-color: #ffba3d;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+  &:disabled {
+    color: rgba(0, 0, 0, 0.78);
+    background-color: #b57500;
+    cursor: not-allowed;
   }
   & a {
-    color: rgba(0, 0, 0, 0.78);
     display: block;
     width: 100%;
     height: 100%;
+    color: inherit;
   }
   & .iconButton,
   .button {
     display: inline-flex;
     align-items: center;
     padding: 5px 8px;
+    color: inherit;
     & svg {
       align-self: center;
       min-width: ${props => (props.size ? props.size : 14)}px;
