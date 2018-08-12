@@ -5,15 +5,13 @@ import Img from 'gatsby-image'
 
 import Button from '../components/Button'
 
-const modalRoot = document.getElementById('modalRoot')
-
 class Modal extends React.Component {
-  constructor(props) {
-    super(props)
-    this.el = document.createElement('div')
+  state = {
+    serverRendered: true,
   }
 
   componentDidMount() {
+    this.setState({ serverRendered: false })
     // The portal element is inserted in the DOM tree after
     // the Modal's children are mounted, meaning that children
     // will be mounted on a detached DOM node. If a child
@@ -22,28 +20,35 @@ class Modal extends React.Component {
     // DOM node, or uses 'autoFocus' in a descendant, add
     // state to Modal and only render the children when Modal
     // is inserted in the DOM tree.
-    modalRoot.appendChild(this.el)
   }
 
   componentWillUnmount() {
-    modalRoot.removeChild(this.el)
+    this.modalRoot.removeChild(this.el)
   }
 
   render() {
     const { image, className, closeModal } = this.props
-    return ReactDOM.createPortal(
-      <div className={className}>
-        <Button icon="FiX" className="closeBtn" onClick={closeModal} />
-        <Img
-          fixed
-          sizes={image.sizes}
-          alt={image.title}
-          className="projectImageInnerWrapper"
-          outerWrapperClassName="projectImageOuterWrapper"
-        />
-      </div>,
-      this.el
-    )
+    const { serverRendered } = this.state
+    if (!serverRendered) {
+      this.modalRoot = document.getElementById('modalRoot')
+      this.el = document.createElement('div')
+      this.modalRoot.appendChild(this.el)
+    }
+    return serverRendered
+      ? null
+      : ReactDOM.createPortal(
+          <div className={className}>
+            <Button icon="FiX" className="closeBtn" onClick={closeModal} />
+            <Img
+              fixed
+              sizes={image.sizes}
+              alt={image.title}
+              className="projectImageInnerWrapper"
+              outerWrapperClassName="projectImageOuterWrapper"
+            />
+          </div>,
+          this.el
+        )
   }
 }
 
