@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 
 import Button from '../components/Button'
 
-const modalRoot = window.document.getElementById('modalRoot')
+const modalRoot = document.getElementById('modalRoot')
 
 class Modal extends React.Component {
   constructor(props) {
