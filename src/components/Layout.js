@@ -9,12 +9,13 @@ import Header from './Header'
 import LandingBackground from './LandingBackground'
 
 const Layout = ({ children, data, landing, className }) => {
-  window.addEventListener('scroll', () => {
-    window.document.body.scrollTop > 20 ||
-    window.document.documentElement.scrollTop > 20
-      ? window.document.querySelector('header').classList.add('darkBg')
-      : window.document.querySelector('header').classList.remove('darkBg')
-  })
+  window &&
+    window.addEventListener('scroll', () => {
+      window.document.body.scrollTop > 20 ||
+      window.document.documentElement.scrollTop > 20
+        ? window.document.querySelector('header').classList.add('darkBg')
+        : window.document.querySelector('header').classList.remove('darkBg')
+    })
   const bg = data.background.edges[0].node
   return (
     <div className={className}>
