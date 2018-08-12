@@ -9,13 +9,16 @@ import Header from './Header'
 import LandingBackground from './LandingBackground'
 
 const Layout = ({ children, data, landing, className }) => {
-  window &&
+  try {
     window.addEventListener('scroll', () => {
       window.document.body.scrollTop > 20 ||
       window.document.documentElement.scrollTop > 20
         ? window.document.querySelector('header').classList.add('darkBg')
         : window.document.querySelector('header').classList.remove('darkBg')
     })
+  } catch (e) {
+    console.log('[Error][Layout Scroll Event Listener]', e)
+  }
   const bg = data.background.edges[0].node
   return (
     <div className={className}>

@@ -1,7 +1,4 @@
-const secrets =
-  process.env.NODE_ENV === 'production'
-    ? process.env
-    : require('./secrets.json')
+const secrets = require('./secrets.json')
 const { spaceId, accessToken } = secrets
 
 module.exports = {
