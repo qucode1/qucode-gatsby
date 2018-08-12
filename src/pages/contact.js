@@ -73,10 +73,11 @@ class Contact extends Component {
                 onSubmit={handleSubmit}
                 data-netlify-honeypot="secret"
                 data-netlify="true"
+                name="contact"
               >
                 <Field name="secret">
                   {({ input, meta }) => (
-                    <div className="secret">
+                    <div className="secret" aria-hidden>
                       <label>Do not fill this out if you're human!</label>
                       <input
                         {...input}
@@ -103,7 +104,7 @@ class Contact extends Component {
                 </Field>
                 <Field name="lastName" validate={required}>
                   {({ input, meta }) => (
-                    <div aria-hidden>
+                    <div>
                       <label>Last Name</label>
                       <input
                         {...input}
