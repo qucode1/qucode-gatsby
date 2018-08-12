@@ -2,22 +2,22 @@ import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import Fi from 'react-icons/fi'
 
-const Button = props => {
-  const Icon = Fi[props.icon]
+const Button = ({ icon, text, link, target = '_blank', ...props }) => {
+  const Icon = Fi[icon]
 
-  const button = props.icon ? (
+  const button = icon ? (
     <div className="iconButton">
       <Icon />
-      {props.text && <p>{props.text}</p>}
+      {text && <p>{text}</p>}
     </div>
   ) : (
-    <div className="button">{props.text && <p>{props.text}</p>}</div>
+    <div className="button">{text && <p>{text}</p>}</div>
   )
 
   return (
     <button {...props}>
-      {props.link ? (
-        <a href={props.link} target="_blank" rel="noopener noreferrer">
+      {link ? (
+        <a href={link} target={target} rel="noopener noreferrer">
           {button}
         </a>
       ) : (
@@ -32,7 +32,7 @@ export default styled(Button)`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: -2px 3px 3px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   transition: 0.25s ease-in-out;

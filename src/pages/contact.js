@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Layout from '../components/Layout'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
 import { Form, Field } from 'react-final-form'
 
@@ -37,27 +37,37 @@ class Contact extends Component {
       <Layout landing>
         <div className={this.props.className}>
           <h2>Contact Me</h2>
-          <p>Email: {profile.email}</p>
+          <div className="contactButtons">
+            <Button
+              icon="FiMail"
+              link={`mailto:${profile.email}`}
+              target="_self"
+              className="emailBtn"
+              size="25"
+              text={profile.email}
+            />
+            <div className="socialButtons">
+              {profile.twitter && (
+                <Button
+                  icon="FiTwitter"
+                  link={`https://twitter.com/${profile.twitter}`}
+                  className="twitterBtn"
+                  size="30"
+                  text={profile.twitter}
+                />
+              )}
+              {profile.github && (
+                <Button
+                  icon="FiGithub"
+                  link={`https://github.com/${profile.github}`}
+                  className="githubBtn"
+                  size="30"
+                  text={profile.github}
+                />
+              )}
+            </div>
+          </div>
 
-          {profile.twitter && (
-            <Button
-              icon="FiTwitter"
-              link={`https://twitter.com/${profile.twitter}`}
-              className="twitterBtn"
-              size="30"
-              text={profile.twitter}
-            />
-          )}
-          {profile.github && (
-            <Button
-              icon="FiGithub"
-              link={`https://github.com/${profile.github}`}
-              className="githubBtn"
-              size="30"
-              text={profile.github}
-            />
-          )}
-          <h3>Or send me a message right now:</h3>
           <Form
             onSubmit={this.onSubmit}
             render={({
@@ -75,6 +85,7 @@ class Contact extends Component {
                 data-netlify="true"
                 name="contact"
               >
+                <h3>Or send me a message right now:</h3>
                 <Field name="secret">
                   {({ input, meta }) => (
                     <div className="secret" aria-hidden>
@@ -90,12 +101,15 @@ class Contact extends Component {
                 </Field>
                 <Field name="firstName" validate={required}>
                   {({ input, meta }) => (
-                    <div>
+                    <div className="field">
                       <label>First Name</label>
                       <input
                         {...input}
                         type="text"
-                        placeholder="First Name"
+                        placeholder="John"
+                        className={`${meta.valid ? 'valid' : ''}${
+                          meta.invalid && meta.touched ? ' invalid' : ''
+                        }${meta.active ? ' active' : ''}`}
                         disabled={meta.submitSucceeded}
                       />
                       {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -104,12 +118,18 @@ class Contact extends Component {
                 </Field>
                 <Field name="lastName" validate={required}>
                   {({ input, meta }) => (
-                    <div>
+                    <div className="field">
                       <label>Last Name</label>
                       <input
                         {...input}
                         type="text"
-                        placeholder="Last Name"
+                        placeholder="Doe"
+                        className={`${
+                          meta.valid && meta.touched ? 'valid' : ''
+                        }${meta.invalid && meta.touched ? ' invalid' : ''}${
+                          meta.active ? ' active' : ''
+                        }`}
+                        disabled={meta.submitSucceeded}
                         disabled={meta.submitSucceeded}
                       />
                       {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -125,19 +145,23 @@ class Contact extends Component {
                   )}
                 >
                   {({ input, meta }) => (
-                    <div>
+                    <div className="field">
                       <label>Age</label>
                       <input
                         {...input}
                         type="text"
-                        placeholder="Age"
+                        placeholder="25"
+                        className={`${meta.valid ? 'valid' : ''}${
+                          meta.invalid && meta.touched ? ' invalid' : ''
+                        }${meta.active ? ' active' : ''}`}
+                        disabled={meta.submitSucceeded}
                         disabled={meta.submitSucceeded}
                       />
                       {meta.error && meta.touched && <span>{meta.error}</span>}
                     </div>
                   )}
                 </Field>
-                <div className="buttons">
+                <div className="formButtons">
                   <Button
                     icon={
                       submitSucceeded
@@ -177,23 +201,116 @@ class Contact extends Component {
   }
 }
 
+const autofillAnimation = keyframes`
+  to {
+    color: white;
+    background-color: transparent;
+  }
+`
+const autofillDisabledAnimation = keyframes`
+  to {
+    color: rgba(255, 255, 255, .7);
+    background-color: rgba(0,0,0,.5);
+  }
+`
+
 const StyledContact = styled(Contact)`
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  margin: auto;
   color: rgba(255, 255, 255, 0.85);
-  & .h2 {
+  @media screen and (min-width: 769px) {
+    max-width: calc(100% / 3 * 2);
+    padding: 25px;
+  }
+  & h2,
+  h3 {
     margin: 15px 0;
   }
-  & .twitterBtn,
-  .githubBtn {
-    display: inline-block;
-    background-color: transparent;
-    box-shadow: none;
-    color: rgba(255, 255, 255, 0.85);
-    &:hover {
-      color: orange;
+  & .contactButtons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 0 20px 0;
+    @media screen and (min-width: 769px) {
+      margin: 10px 0 25px 0;
+    }
+    & button {
+      display: inline-block;
+      margin: 0 5px;
       background-color: transparent;
       box-shadow: none;
+      color: rgba(255, 255, 255, 0.85);
+      &:hover {
+        color: orange;
+        background-color: transparent;
+        box-shadow: none;
+      }
     }
+  }
+  form {
+    width: 100%;
+    max-width: 380px;
+    @media screen and (min-width: 769px) {
+      width: 75%;
+      min-width: 380px;
+      max-width: 500px;
+    }
+  }
+  .field {
+    margin: 15px 0;
+    & label {
+      display: block;
+    }
+    & input {
+      width: 100%;
+      padding: 3px;
+      margin: 5px 0;
+      border: none;
+      color: white;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+      border-radius: 2px;
+      background-color: transparent;
+      outline: none;
+      transition: 0.25s ease-in-out;
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+        opacity: 1;
+      }
+      &:-webkit-autofill {
+        -webkit-animation-name: ${autofillAnimation};
+        -webkit-animation-fill-mode: both;
+      }
+      &:-webkit-autofill:disabled {
+        -webkit-animation-name: ${autofillDisabledAnimation};
+        -webkit-animation-fill-mode: both;
+      }
+      &:disabled {
+        background-color: rgba(0, 0, 0, 0.5);
+        cursor: not-allowed;
+      }
+      &.valid {
+        border-color: limegreen;
+      }
+      &.invalid {
+        border-color: tomato;
+      }
+      &.active {
+        border-color: orange;
+      }
+    }
+    & span {
+      color: tomato;
+    }
+  }
+  .formButtons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    margin-top: 20px;
   }
   .sendBtn.success {
     background-color: limegreen;

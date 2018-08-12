@@ -43,8 +43,11 @@ const StyledIndexPage = styled(IndexPage)`
     '. main main .'
     'footer footer footer footer';
   grid-gap: 5px;
-  height: 100%;
+  height: calc(100vh - 110px);
   padding: 5px;
+  @media screen and (min-width: 769px) {
+    height: calc(100vh - 55px);
+  }
   & .content {
     grid-column: 2 / 4;
     grid-row: 2 / 4;

@@ -111,25 +111,27 @@ class Projects extends Component {
 
 const StyledProjects = styled(Projects)`
   padding: 5px;
-  max-width: 100%;
+  margin: auto;
+  max-width: 1920px;
   color: rgba(255, 255, 255, 0.9);
   display: grid;
   grid-template-rows: 64px 3fr 3fr 3fr;
   grid-gap: 10px;
   min-height: 100%;
-  padding-bottom: 60px;
   grid-template-columns: minmax(calc(100% - 10px), 400px);
   grid-template-areas:
     'title'
     'project';
   justify-content: center;
   @media screen and (min-width: 650px) {
+    padding: 15px;
     grid-template-columns: repeat(2, minmax(calc(100% / 2 - 20px), 400px));
     grid-template-areas:
       'title title'
       'project project';
   }
   @media screen and (min-width: 850px) {
+    padding: 25px;
     grid-template-areas:
       'title title title'
       'project project project'

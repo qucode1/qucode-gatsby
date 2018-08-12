@@ -48,7 +48,7 @@ export default styled(Navigation)`
     text-decoration: none;
     padding: 0 5px 0 5px;
     font-size: 20px;
-    transition: 0.33s ease-out
+    transition: 0.3s ease-out;
     &:hover:not(.activeLink) {
       color: white;
     }

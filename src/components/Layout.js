@@ -37,14 +37,13 @@ const Layout = ({ children, data, landing, className }) => {
 }
 
 const StyledLayout = styled(Layout)`
-  height: 100vh;
+  min-height: 100vh;
   & main {
     background-color: ${({ landing }) =>
       landing ? 'transparent' : 'whitesmoke'};
     margin: 0;
     padding: ${({ landing }) => (landing ? '0' : '5px')};
     font-family: sans-serif;
-    height: 100%;
     min-height: 100%;
     padding-top: 55px;
     overflow: ${({ modal }) => (modal ? 'hidden' : 'initial')};
