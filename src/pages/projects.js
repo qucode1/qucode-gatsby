@@ -16,11 +16,9 @@ class Projects extends Component {
     }
   }
   openImageGallery = image => {
-    console.log('image', image)
     this.setState({ galleryOpen: true, galleryImage: image })
   }
   closeImageGallery = () => {
-    console.log('close Modal')
     this.setState({ galleryOpen: false, galleryImage: null })
   }
   render() {

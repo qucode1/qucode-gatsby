@@ -63,6 +63,15 @@ class Contact extends Component {
                   text={profile.twitter}
                 />
               )}
+              {profile.linkedin && (
+                <Button
+                  icon="FiLinkedin"
+                  link={`https://www.linkedin.com/in/${profile.linkedin}`}
+                  className="linkedinBtn"
+                  size="30"
+                  text={profile.linkedin}
+                />
+              )}
               {profile.github && (
                 <Button
                   icon="FiGithub"
@@ -368,6 +377,7 @@ export default props => (
               email
               twitter
               github
+              linkedin
             }
           }
         }
