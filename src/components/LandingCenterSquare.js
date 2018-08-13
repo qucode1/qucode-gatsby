@@ -3,28 +3,66 @@ import styled from 'styled-components'
 import { FiGithub, FiTwitter } from 'react-icons/fi'
 
 import LandingProfileImage from './LandingProfileImage'
+import Button from './Button'
 
-const LandingCenterSquare = ({ className, didMount, profileImage }) => (
+const LandingCenterSquare = ({
+  className,
+  didMount,
+  profile,
+  profileImage,
+}) => (
   <div className={className}>
     <div className="inSquare">
       <div className={`topRightIcons${didMount ? ' isVisible' : ''}`}>
-        <FiTwitter />
-        <FiGithub />
+        <Button
+          icon="FiTwitter"
+          link={`https://twitter.com/${profile.twitter}`}
+          className="socialLink"
+        />
+        <Button
+          icon="FiGithub"
+          link={`https://github.com/${profile.github}`}
+          className="socialLink"
+        />
       </div>
       <div className="centerIconsRow">
         <div className={`topLeftIcons${didMount ? ' isVisible' : ''}`}>
-          <FiTwitter />
-          <FiGithub />
+          <Button
+            icon="FiTwitter"
+            link={`https://twitter.com/${profile.twitter}`}
+            className="socialLink"
+          />
+          <Button
+            icon="FiGithub"
+            link={`https://github.com/${profile.github}`}
+            className="socialLink"
+          />
         </div>
         <LandingProfileImage profileImage={profileImage} />
         <div className={`bottomRightIcons${didMount ? ' isVisible' : ''}`}>
-          <FiGithub />
-          <FiTwitter />
+          <Button
+            icon="FiTwitter"
+            link={`https://twitter.com/${profile.twitter}`}
+            className="socialLink"
+          />
+          <Button
+            icon="FiGithub"
+            link={`https://github.com/${profile.github}`}
+            className="socialLink"
+          />
         </div>
       </div>
       <div className={`bottomLeftIcons${didMount ? ' isVisible' : ''}`}>
-        <FiGithub />
-        <FiTwitter />
+        <Button
+          icon="FiTwitter"
+          link={`https://twitter.com/${profile.twitter}`}
+          className="socialLink"
+        />
+        <Button
+          icon="FiGithub"
+          link={`https://github.com/${profile.github}`}
+          className="socialLink"
+        />
       </div>
     </div>
   </div>
@@ -53,6 +91,24 @@ export default styled(LandingCenterSquare)`
     min-width: 200px;
     width: 100%;
     user-select: none;
+  }
+  & .socialLink {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    box-shadow: none;
+    & .iconButton {
+      padding: 2px 0;
+    }
+    &:hover {
+      background-color: transparent;
+      color: orange;
+      box-shadow: none;
+    }
+    @media screen and (min-width: 769px) {
+      & .iconButton {
+        padding: 5px 8px;
+      }
+    }
   }
   & .topLeftIcons,
   .topRightIcons,
@@ -101,8 +157,6 @@ export default styled(LandingCenterSquare)`
   .bottomLeftIcons svg,
   .bottomRightIcons svg {
     transform: rotate(-45deg);
-    color: rgba(255, 255, 255, 0.8);
-    cursor: pointer;
     padding: 5px;
     min-width: 30px;
     min-height: 30px;
@@ -110,13 +164,6 @@ export default styled(LandingCenterSquare)`
     height: 5vh;
     max-width: 50px;
     max-height: 50px;
-    transition: 0.33s ease-out;
-  }
-  & .topLeftIcons svg:hover,
-  .topRightIcons svg:hover,
-  .bottomLeftIcons svg:hover,
-  .bottomRightIcons svg:hover {
-    color: orange;
   }
   & .centerIconsRow {
     display: flex;

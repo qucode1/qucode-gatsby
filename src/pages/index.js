@@ -24,6 +24,7 @@ class IndexPage extends Component {
           <div className="content">
             <LandingCenterSquare
               profileImage={profile.image}
+              profile={profile}
               didMount={this.state.didMount}
             />
           </div>
@@ -71,6 +72,7 @@ export default props => (
               email
               github
               twitter
+              linkedin
               image {
                 id
                 title
