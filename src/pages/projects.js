@@ -12,14 +12,24 @@ class Projects extends Component {
     super(props)
     this.state = {
       galleryOpen: false,
-      galleryImage: null,
+      galleryImages: null,
+      galleryIndex: null,
     }
   }
-  openImageGallery = image => {
-    this.setState({ galleryOpen: true, galleryImage: image })
+  openImageGallery = (images, index) => {
+    console.log('openGallery', images, index)
+    this.setState({
+      galleryOpen: true,
+      galleryImages: images,
+      galleryIndex: index,
+    })
   }
   closeImageGallery = () => {
-    this.setState({ galleryOpen: false, galleryImage: null })
+    this.setState({
+      galleryOpen: false,
+      galleryImages: null,
+      galleryIndex: null,
+    })
   }
   render() {
     const projects = this.props.data.allContentfulProject.edges
@@ -46,11 +56,11 @@ class Projects extends Component {
                 {images &&
                   images.length && (
                     <div className="images">
-                      {images.map(image => (
+                      {images.map((image, index) => (
                         <div
                           key={image.id}
                           className="thumbnail"
-                          onClick={() => this.openImageGallery(image)}
+                          onClick={() => this.openImageGallery(images, index)}
                         >
                           <Img
                             fluid
@@ -95,9 +105,10 @@ class Projects extends Component {
             )
           )}
           {this.state.galleryOpen &&
-            this.state.galleryImage && (
+            this.state.galleryImages.length && (
               <Modal
-                image={this.state.galleryImage}
+                images={this.state.galleryImages}
+                index={this.state.galleryIndex}
                 closeModal={this.closeImageGallery}
               />
             )}

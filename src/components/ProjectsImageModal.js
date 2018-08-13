@@ -4,10 +4,16 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 import Button from '../components/Button'
+import { DH_UNABLE_TO_CHECK_GENERATOR } from 'constants'
 
 class Modal extends React.Component {
-  state = {
-    serverRendered: true,
+  constructor(props) {
+    super(props)
+    this.state = {
+      serverRendered: true,
+      images: this.props.images,
+      index: this.props.index,
+    }
   }
 
   componentDidMount() {
@@ -25,26 +31,52 @@ class Modal extends React.Component {
   componentWillUnmount() {
     this.modalRoot.removeChild(this.el)
   }
-
+  changeImage = direction => {
+    this.setState(prevState => {
+      return direction === 'next'
+        ? prevState.index < this.props.images.length - 1
+          ? { index: ++prevState.index }
+          : { index: 0 }
+        : prevState.index > 0
+          ? { index: --prevState.index }
+          : { index: this.props.images.length - 1 }
+    })
+  }
   render() {
-    const { image, className, closeModal } = this.props
-    const { serverRendered } = this.state
+    const { images, className, closeModal } = this.props
+    const { serverRendered, index } = this.state
+    const image = images[index]
+
     if (!serverRendered) {
       this.modalRoot = document.getElementById('modalRoot')
-      this.el = document.createElement('div')
-      this.modalRoot.appendChild(this.el)
+      if (!this.el) {
+        this.el = document.createElement('div')
+        this.modalRoot.appendChild(this.el)
+      }
     }
     return serverRendered
       ? null
       : ReactDOM.createPortal(
           <div className={className}>
             <Button icon="FiX" className="closeBtn" onClick={closeModal} />
+
+            <Button
+              icon="FiChevronLeft"
+              className="galleryControl"
+              onClick={() => this.changeImage('prev')}
+            />
+
             <Img
               fixed
               sizes={image.sizes}
               alt={image.title}
               className="projectImageInnerWrapper"
               outerWrapperClassName="projectImageOuterWrapper"
+            />
+            <Button
+              icon="FiChevronRight"
+              className="galleryControl"
+              onClick={() => this.changeImage('next')}
             />
           </div>,
           this.el

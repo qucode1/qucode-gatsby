@@ -50,7 +50,7 @@ class Contact extends Component {
               link={`mailto:${profile.email}`}
               target="_self"
               className="emailBtn"
-              size="25"
+              size="20"
               text={profile.email}
             />
             <div className="socialButtons">
@@ -59,7 +59,7 @@ class Contact extends Component {
                   icon="FiTwitter"
                   link={`https://twitter.com/${profile.twitter}`}
                   className="twitterBtn"
-                  size="30"
+                  size="20"
                   text={profile.twitter}
                 />
               )}
@@ -68,7 +68,7 @@ class Contact extends Component {
                   icon="FiLinkedin"
                   link={`https://www.linkedin.com/in/${profile.linkedin}`}
                   className="linkedinBtn"
-                  size="30"
+                  size="20"
                   text={profile.linkedin}
                 />
               )}
@@ -77,7 +77,7 @@ class Contact extends Component {
                   icon="FiGithub"
                   link={`https://github.com/${profile.github}`}
                   className="githubBtn"
-                  size="30"
+                  size="20"
                   text={profile.github}
                 />
               )}

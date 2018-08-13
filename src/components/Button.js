@@ -61,6 +61,10 @@ export default styled(Button)`
       align-self: center;
       min-width: ${props => (props.size ? props.size : 14)}px;
       min-height: ${props => (props.size ? props.size : 14)}px;
+      @media screen and (min-width: 769px) {
+        min-width: ${props => (props.size ? Number(props.size) + 10 : 20)}px;
+        min-height: ${props => (props.size ? Number(props.size) + 10 : 20)}px;
+      }
     }
     & p {
       margin: 0;

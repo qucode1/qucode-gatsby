@@ -96,6 +96,7 @@ export default styled(LandingCenterSquare)`
     background-color: transparent;
     color: rgba(255, 255, 255, 0.8);
     box-shadow: none;
+    transform: rotate(-45deg);
     & .iconButton {
       padding: 2px 0;
     }
@@ -156,14 +157,13 @@ export default styled(LandingCenterSquare)`
   .topRightIcons svg,
   .bottomLeftIcons svg,
   .bottomRightIcons svg {
-    transform: rotate(-45deg);
-    padding: 5px;
     min-width: 30px;
     min-height: 30px;
     width: 5vh;
     height: 5vh;
     max-width: 50px;
     max-height: 50px;
+    padding: 5px;
   }
   & .centerIconsRow {
     display: flex;
