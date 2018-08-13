@@ -8,10 +8,17 @@ import Button from '../components/Button'
 
 const required = value => (value ? undefined : 'Required')
 
-const mustBeNumber = value => (isNaN(value) ? 'Must be a number' : undefined)
+// const mustBeNumber = value => (isNaN(value) ? 'Must be a number' : undefined)
 
-const minValue = min => value =>
-  isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`
+// const minValue = min => value =>
+//   isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`
+
+const mustBeEmail = value => {
+  const match = value.match(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  )
+  return match && match[0] ? undefined : 'Must be a valid email address'
+}
 
 const composeValidators = (...validators) => value =>
   validators.reduce((error, validator) => error || validator(value), undefined)
@@ -130,31 +137,46 @@ class Contact extends Component {
                           meta.active ? ' active' : ''
                         }`}
                         disabled={meta.submitSucceeded}
-                        disabled={meta.submitSucceeded}
                       />
                       {meta.error && meta.touched && <span>{meta.error}</span>}
                     </div>
                   )}
                 </Field>
                 <Field
-                  name="age"
-                  validate={composeValidators(
-                    required,
-                    mustBeNumber,
-                    minValue(18)
-                  )}
+                  name="email"
+                  validate={composeValidators(required, mustBeEmail)}
                 >
                   {({ input, meta }) => (
                     <div className="field">
-                      <label>Age</label>
+                      <label>Email</label>
                       <input
                         {...input}
-                        type="text"
-                        placeholder="25"
-                        className={`${meta.valid ? 'valid' : ''}${
-                          meta.invalid && meta.touched ? ' invalid' : ''
-                        }${meta.active ? ' active' : ''}`}
+                        type="email"
+                        placeholder="john@doe.com"
+                        className={`${
+                          meta.valid && meta.touched ? 'valid' : ''
+                        }${meta.invalid && meta.touched ? ' invalid' : ''}${
+                          meta.active ? ' active' : ''
+                        }`}
                         disabled={meta.submitSucceeded}
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+                <Field name="message" validate={required}>
+                  {({ input, meta }) => (
+                    <div className="field">
+                      <label>Message</label>
+                      <textarea
+                        {...input}
+                        placeholder="Hi there. Nice to meet you."
+                        rows={10}
+                        className={`${
+                          meta.valid && meta.touched ? 'valid' : ''
+                        }${meta.invalid && meta.touched ? ' invalid' : ''}${
+                          meta.active ? ' active' : ''
+                        }`}
                         disabled={meta.submitSucceeded}
                       />
                       {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -264,7 +286,8 @@ const StyledContact = styled(Contact)`
     & label {
       display: block;
     }
-    & input {
+    & input,
+    textarea {
       width: 100%;
       padding: 3px;
       margin: 5px 0;
