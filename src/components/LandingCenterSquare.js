@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FiGithub, FiTwitter } from 'react-icons/fi'
 
 import LandingProfileImage from './LandingProfileImage'
 import Button from './Button'

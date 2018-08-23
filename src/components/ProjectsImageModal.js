@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 import Button from '../components/Button'
-import { DH_UNABLE_TO_CHECK_GENERATOR } from 'constants'
 
 class Modal extends React.Component {
   constructor(props) {
@@ -18,14 +17,6 @@ class Modal extends React.Component {
 
   componentDidMount() {
     this.setState({ serverRendered: false })
-    // The portal element is inserted in the DOM tree after
-    // the Modal's children are mounted, meaning that children
-    // will be mounted on a detached DOM node. If a child
-    // component requires to be attached to the DOM tree
-    // immediately when mounted, for example to measure a
-    // DOM node, or uses 'autoFocus' in a descendant, add
-    // state to Modal and only render the children when Modal
-    // is inserted in the DOM tree.
   }
 
   componentWillUnmount() {
