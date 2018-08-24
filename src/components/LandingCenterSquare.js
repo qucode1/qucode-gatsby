@@ -15,33 +15,35 @@ const LandingCenterSquare = ({
       <div className={`topRightIcons${didMount ? ' isVisible' : ''}`}>
         <Button
           icon="FiTwitter"
-          link={`https://twitter.com/${profile.twitter}`}
-          className="socialLink"
+          // link={`https://twitter.com/${profile.twitter}`}
+          className="socialLink hidden"
+          // style={{ opacity: 0 }}
         />
         <Button
           icon="FiGithub"
-          link={`https://github.com/${profile.github}`}
-          className="socialLink"
+          // link={`https://github.com/${profile.github}`}
+          className="socialLink hidden"
         />
       </div>
       <div className="centerIconsRow">
         <div className={`topLeftIcons${didMount ? ' isVisible' : ''}`}>
           <Button
             icon="FiTwitter"
-            link={`https://twitter.com/${profile.twitter}`}
-            className="socialLink"
+            // link={`https://twitter.com/${profile.twitter}`}
+            className="socialLink hidden"
           />
           <Button
             icon="FiGithub"
-            link={`https://github.com/${profile.github}`}
-            className="socialLink"
+            // link={`https://github.com/${profile.github}`}
+            className="socialLink hidden"
           />
         </div>
         <LandingProfileImage profileImage={profileImage} />
         <div className={`bottomRightIcons${didMount ? ' isVisible' : ''}`}>
           <Button
-            icon="FiTwitter"
-            link={`https://twitter.com/${profile.twitter}`}
+            icon="FiMail"
+            link={`mailto:${profile.email}`}
+            target="_self"
             className="socialLink"
           />
           <Button
@@ -58,8 +60,8 @@ const LandingCenterSquare = ({
           className="socialLink"
         />
         <Button
-          icon="FiGithub"
-          link={`https://github.com/${profile.github}`}
+          icon="FiLinkedin"
+          link={`https://www.linkedin.com/in/${profile.linkedin}`}
           className="socialLink"
         />
       </div>

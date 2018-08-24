@@ -45,6 +45,10 @@ export default styled(Button)`
     background-color: #b57500;
     cursor: not-allowed;
   }
+  &.hidden {
+    opacity: 0;
+    cursor: default;
+  }
   & a {
     display: block;
     width: 100%;
