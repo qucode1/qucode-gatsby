@@ -124,10 +124,11 @@ const StyledProjects = styled(Projects)`
   max-width: 1920px;
   color: rgba(255, 255, 255, 0.9);
   display: grid;
-  grid-template-rows: 64px 3fr 3fr 3fr;
+  grid-template-rows: 64px 3fr;
+  grid-auto-rows: 3fr;
   grid-gap: 10px;
   min-height: 100%;
-  grid-template-columns: minmax(calc(100% - 10px), 400px);
+  grid-template-columns: minmax(calc(100% - 10px));
   grid-template-areas:
     'title'
     'project';
@@ -143,8 +144,6 @@ const StyledProjects = styled(Projects)`
     padding: 25px;
     grid-template-areas:
       'title title title'
-      'project project project'
-      'project project project'
       'project project project';
     grid-template-columns: repeat(3, minmax(calc(100% / 3 - 30px), 400px));
   }
