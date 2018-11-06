@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import styled, { injectGlobal } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import 'normalize.css'
 import { StaticQuery, graphql } from 'gatsby'
 
@@ -56,7 +56,7 @@ const StyledLayout = styled(Layout)`
   }
 `
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     font-family: sans-serif;
@@ -67,8 +67,21 @@ injectGlobal`
     width: 100%;
     height: 100%
   }
-  
 `
+
+// injectGlobal`
+//   * {
+//     box-sizing: border-box;
+//     font-family: sans-serif;
+//     margin: 0;
+//     padding: 0;
+//   }
+//   html, body {
+//     width: 100%;
+//     height: 100%
+//   }
+  
+// `
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
@@ -76,6 +89,7 @@ Layout.propTypes = {
 }
 
 export default props => (
+  <React.Fragment>
   <StaticQuery
     query={graphql`
       query {
@@ -94,4 +108,6 @@ export default props => (
     `}
     render={data => <StyledLayout data={data} {...props} />}
   />
+  <GlobalStyle/>
+  </React.Fragment>
 )

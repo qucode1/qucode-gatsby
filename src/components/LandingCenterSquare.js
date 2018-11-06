@@ -119,7 +119,7 @@ export default styled(LandingCenterSquare)`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px;
+    padding: 3px;
     transition: transform 0.3s ease-in-out;
   }
   & .topLeftIcons,
@@ -165,6 +165,10 @@ export default styled(LandingCenterSquare)`
     max-width: 50px;
     max-height: 50px;
     padding: 5px;
+    @media screen and (min-width: 768px) {
+      min-width: 40px;
+      min-height: 40px;
+    }
   }
   & .centerIconsRow {
     display: flex;

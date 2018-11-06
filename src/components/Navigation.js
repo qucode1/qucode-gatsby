@@ -6,7 +6,7 @@ const Navigation = ({ className }) => {
   return (
     <nav className={className}>
       <ul>
-        <Link className="link" exact activeClassName="activeLink" to="/">
+        <Link className="link" activeClassName="activeLink" to="/">
           Home
         </Link>
         <Link className="link" activeClassName="activeLink" to="/about">
